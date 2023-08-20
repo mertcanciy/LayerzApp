@@ -31,7 +31,7 @@ const Home: NextPage = () => {
   const [typedMessage, setTypedMessage] = useState("");
   const [enteredAddress, setEnteredAddress] = useState("");
   const [selected, setSelected] = useState(chains[0]);
-  const [nativeFee, setNativeFee] = useState("");
+  const [nativeFee, setNativeFee] = useState("0");
 
   const { data: MessageEvents, isLoading: isMessageEventsLoading } = useScaffoldEventHistory({
     contractName: "LayerzApp",
@@ -43,7 +43,7 @@ const Home: NextPage = () => {
     contractName: "LayerzApp",
     functionName: "sendtheMessage",
     args: [selected.id, enteredAddress, typedMessage],
-    value: nativeFee,
+    value: nativeFee as `${number}`,
   });
 
   const { address: connectedWallet } = useAccount();
